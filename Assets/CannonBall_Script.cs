@@ -1,24 +1,27 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CannonBall_Script : MonoBehaviour
 {
     private Rigidbody2D body;
+    private float timer = 8f;
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        body.position = new Vector2(-8, -3);
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         System.Random rand = new();
-        
-        if (dir.x < 0) { dir.x = dir.x * -1; }
-        body.AddForce(new Vector2(dir.x, dir.y) * rand.Next(500, 1000));
+        body.AddForce( new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y) * rand.Next(1,5), ForceMode2D.Impulse );  
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        timer = timer - Time.deltaTime;
+        if (timer <= 0) { Object.Destroy(this.gameObject); }
     }
 }

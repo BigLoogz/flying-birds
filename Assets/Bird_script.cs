@@ -7,7 +7,6 @@ public class Bird_script : MonoBehaviour
 {
     private bool fired = false;
     private Rigidbody2D body;
-    Vector2 objPos = new Vector2(-5f,-1f);
     public GameObject objectToSpawn;
 
 
@@ -20,19 +19,14 @@ public class Bird_script : MonoBehaviour
     void Update()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float angle = Mathf.Atan2(mousePos.y - objPos.y, mousePos.x - objPos.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg;
         body.rotation = angle;
         
-
         if (Input.GetKeyDown(KeyCode.Space) && fired == false)
         {
-            fire();
+            Instantiate(objectToSpawn, transform.position, transform.rotation);
         }
 
-    }
 
-    void fire()
-    {
-        Instantiate(objectToSpawn);
     }
 }
