@@ -4,6 +4,14 @@ using UnityEngine.SceneManagement;
 public class scoreTracker : MonoBehaviour
 {
     private int score = 0; // stores the score in a variable
+    public AudioClip music; //  stores the music track to be played 
+    public AudioSource audioSource; // stores the sorce of where the audio is coming from
+
+    void Start()
+    {
+        audioSource.clip = music; // sets the clip of the audio source to the music track
+        audioSource.Play(); // plays the clip stored in the audio source
+    }
     public void addScore() //this function is called in the enemy script when a coliosion with a cannonball occurs
     {
         score += 500; // add 500 to the score 

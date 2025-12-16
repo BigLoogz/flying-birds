@@ -10,6 +10,9 @@ public class Cannon_script : MonoBehaviour
     private Rigidbody2D body;
     public GameObject objectToSpawn; // stores the cannonBall object so that it can be spawned later 
 
+    public AudioClip firingSound; // stores an audio clip of the cannnon firing 
+    public AudioSource audioSource; // stores the sorce of where the audio is coming from
+
 
     void Start()
     {
@@ -26,6 +29,8 @@ public class Cannon_script : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space) && recharge <= 0) // detects that the user has presed the space bar and the reacharge isnt on a timer
         {
+
+            audioSource.PlayOneShot(firingSound); // plays an audio clip of the cannon firing 
             Debug.Log("CannonBall Fired"); // debug log to show that a cannonball was fired 
             Instantiate(objectToSpawn, transform.position, transform.rotation); // Instantiates a cannonball object at the cannon objects position and rortion
 
