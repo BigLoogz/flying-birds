@@ -15,7 +15,7 @@ public class CannonBall_Script : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         System.Random rand = new();
-        body.AddForce( new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y) * rand.Next(1,5), ForceMode2D.Impulse );  
+        body.AddForce( new Vector2(10, mousePos.y - transform.position.y) * rand.Next(1,5), ForceMode2D.Impulse );  
     }
 
     // Update is called once per frame

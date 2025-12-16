@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
-public class Bird_script : MonoBehaviour
+public class Cannon_script : MonoBehaviour
 {
-    private bool fired = false;
+    private float recharge = 0;
     private Rigidbody2D body;
     public GameObject objectToSpawn;
 
@@ -22,10 +22,12 @@ public class Bird_script : MonoBehaviour
         float angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg;
         body.rotation = angle;
         
-        if (Input.GetKeyDown(KeyCode.Space) && fired == false)
+        if (Input.GetKeyDown(KeyCode.Space) && recharge <= 0)
         {
             Instantiate(objectToSpawn, transform.position, transform.rotation);
+            recharge = 3;
         }
+        recharge -= Time.deltaTime;
 
 
     }
